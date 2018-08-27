@@ -26,3 +26,94 @@ int main(){
 	} 				//输出完c结点后p的值为NULL，循环终止
 	return 0;
 }
+
+链表（二）--插入节点
+==================
+
+```C
+
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct Node{
+	int data;  //数据域，用于存储数据 
+	struct Node *next;  //指针，可以用来访问节点数据，也可以遍历，指向下一个节点 
+}pe;
+//创建链表，（其实就是创建了一个节点(头结点)） 
+pe* creatList(){
+	//创建一个结构体指针去表示整个链表
+	
+	//给list分配内存空间 
+	pe* list = (pe*)malloc(sizeof(pe));
+	list->data = -11111;
+	list->next = NULL;  //让list的下一个节点为空 
+	return list;  //返回创建的这个链表 
+}
+//创建节点 
+pe* createNode(int data){
+	pe* node = (pe*)malloc(sizeof(pe));
+	node->data = data;
+	node->next = NULL;
+	return node;  //返回创建的这个节点 
+}
+//在头结点处插入（头插法） 
+void insertNodeByHead(pe* List,int data){
+	//创建插入的节点 
+	pe* newNode = createNode(data);
+	//插入的代码 
+	newNode->next = List->next;
+	List->next = newNode;//表头的下一个永远都是新的节点,表头不变 
+}
+
+//在尾节点处插入
+void insertNodeByTail(pe* List,int data){
+	//创建插入的节点 
+	pe* newNode = createNode(data);
+	while(List->next != NULL){
+		List = List->next;
+	}
+	List->next = newNode;
+	newNode->next = NULL;
+} 
+
+//打印链表 
+void printList(struct Node *list){
+	struct Node *p = list->next;
+	while(p){
+		printf("	%d\n",p->data);
+		p = p->next;
+	}
+	printf("\n");
+}
+
+//链表的指定位置删除(此处指定位置的参照点是data)
+void deleteNodeByAppoin(struct Node *list,int posData){ //传入链表和指定位置的数据posData 
+	struct Node *p = list;  //前面那个节点 
+	struct Node *posNode = list->next;//posNode为指定位置节点 
+	while(posNode->data != posData){
+		p = posNode;
+		posNode = p->next;
+		//或者：
+//		p = p->next;
+//		posNode = posNode->next;
+		if(posNode == NULL){
+			printf("未找到指定位置,无法删除。"); 
+			return; 
+		} 
+	}
+	p->next = posNode->next;
+	delete(posNode);
+} 
+
+int main(){
+	struct Node *List = creatList();
+	insertNodeByHead(List,1);
+	insertNodeByHead(List,2);
+	insertNodeByHead(List,3);
+	printList(List);
+	deleteNodeByAppoin(List,1);
+	insertNodeByTail(List,4);
+	printList(List);
+	free(List); 
+	return 0;
+}
