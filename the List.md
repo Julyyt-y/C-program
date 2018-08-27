@@ -91,32 +91,12 @@ void printList(struct Node *list){
 	printf("\n");
 }
 
-//链表的指定位置删除(此处指定位置的参照点是data)
-void deleteNodeByAppoin(struct Node *list,int posData){ //传入链表和指定位置的数据posData 
-	struct Node *p = list;  //前面那个节点 
-	struct Node *posNode = list->next;//posNode为指定位置节点 
-	while(posNode->data != posData){
-		p = posNode;
-		posNode = p->next;
-		//或者：
-//		p = p->next;
-//		posNode = posNode->next;
-		if(posNode == NULL){
-			printf("未找到指定位置,无法删除。"); 
-			return; 
-		} 
-	}
-	p->next = posNode->next;
-	delete(posNode);
-} 
-
 int main(){
 	struct Node *List = creatList();
 	insertNodeByHead(List,1);
 	insertNodeByHead(List,2);
 	insertNodeByHead(List,3);
 	printList(List);
-	deleteNodeByAppoin(List,1);
 	insertNodeByTail(List,4);
 	printList(List);
 	free(List); 
