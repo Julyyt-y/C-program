@@ -127,4 +127,3 @@ void deleteNodeByAppoin(struct Node *list,int posData){ //传入链表和指定�
 	delete(posNode);
 }
 
-```
