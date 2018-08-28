@@ -102,3 +102,29 @@ int main(){
 	free(List); 
 	return 0;
 }
+
+```
+
+链表（三）--删除节点
+==================
+
+//链表的指定位置删除(此处指定位置的参照点是data)
+void deleteNodeByAppoin(struct Node *list,int posData){ //传入链表和指定位置的数据posData 
+	struct Node *p = list;  //前面那个节点 
+	struct Node *posNode = list->next;//posNode为指定位置节点 
+	while(posNode->data != posData){
+		p = posNode;
+		posNode = p->next;
+		//或者：
+//		p = p->next;
+//		posNode = posNode->next;
+		if(posNode == NULL){
+			printf("未找到指定位置,无法删除。"); 
+			return; 
+		} 
+	}
+	p->next = posNode->next;
+	delete(posNode);
+}
+
+```
