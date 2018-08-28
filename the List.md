@@ -108,6 +108,8 @@ int main(){
 链表（三）--删除节点
 ==================
 
+```C
+
 //链表的指定位置删除(此处指定位置的参照点是data)
 void deleteNodeByAppoin(struct Node *list,int posData){ //传入链表和指定位置的数据posData 
 	struct Node *p = list;  //前面那个节点 
