@@ -130,6 +130,17 @@ int main(){
 ==================
 
 ```C
+/**
+ * delete()和 free()的区别 
+ *free和mall匹配：释放malloc出来动态内存
+ *delete和new匹配：释放new出来的动态内存空间
+ */
+  
+//删除链表的头结点 
+void deleteNodeByHead(pe* list){
+	list->next = list->next->next;
+	delete(list->next);
+}
 
 //链表的指定位置删除(此处指定位置的参照点是data)
 void deleteNodeByAppoin(pe *list,int posData){    //传入链表和指定位置的数据posData 
