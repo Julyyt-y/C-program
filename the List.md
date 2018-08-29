@@ -81,6 +81,25 @@ void insertNodeByTail(pe* List,int data){
 	newNode->next = NULL;
 } 
 
+//链表的指定位置(前面)插入  （参数为指定位置前面的节点） 
+void insertNodeByAppoin(pe* list,int data) {
+	pe* p = list;
+	pe* pNode = list->next;		//指定位置
+	pe* newNode = createNode(6);
+	//遍历链表找到指定位置和指定位置前面的节点 
+	while(pNode->data != data){
+		p = p->next;
+		pNode = pNode->next;	
+		
+		if(pNode == NULL){
+			printf("未找到指定位置，无法插入。");
+			return;
+		}
+	}
+	p->next = newNode;					//将 p 的next指向待插入的节点 
+	newNode->next = pNode;				//将待插入节点的next指向原 p的next（即pNode） 
+}
+
 //打印链表 
 void printList(pe *list){
 	pe *p = list->next;
@@ -99,6 +118,8 @@ int main(){
 	printList(List);
 	insertNodeByTail(List,4);
 	printList(List);
+	insertNodeByAppoin(List,4);
+	printList(List); 
 	free(List); 
 	return 0;
 }
