@@ -60,7 +60,7 @@ void insert(Tree* tree,int value){
 ```
 
 二叉树（二） - 遍历
--  --------------------
+---------------------
 
 ```C
 
@@ -70,5 +70,14 @@ void inorder(TreeNode* node){
 		inorder(node->left);
 		printf("%d ",node->data);
 		inorder(node->right);
+	}
+} 
+
+//树的先序遍历
+void traverseOrder(TreeNode* node){
+	if(node != NULL){
+		printf("%d ",node->data);
+		traverseOrder(node->left);
+		traverseOrder(node->right);
 	}
 } 
