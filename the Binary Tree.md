@@ -81,3 +81,12 @@ void traverseOrder(TreeNode* node){
 		traverseOrder(node->right);
 	}
 } 
+
+//树的后序遍历
+void postOrder (TreeNode* node){
+	if(node != NULL){
+		postOrder(node->left);
+		postOrder(node->right);
+		printf("%d ",node->data);
+	}
+}
