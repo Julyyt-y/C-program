@@ -57,3 +57,16 @@ void insert(Tree* tree,int value){
 	return;
 } 
 
+二叉树（二） - 遍历
+-  ---------------------
+
+```C
+
+//树的中序遍历
+void inorder(TreeNode* node){
+	if(node != NULL){
+		inorder(node->left);
+		printf("%d ",node->data);
+		inorder(node->right);
+	}
+} 
