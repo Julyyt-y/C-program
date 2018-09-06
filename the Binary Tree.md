@@ -90,3 +90,22 @@ void postOrder (TreeNode* node){
 		printf("%d ",node->data);
 	}
 }
+
+```
+
+二叉树（三）
+
+```C
+
+//求二叉树的叶子结点个数
+int leaf = 0;
+void leafCount(TreeNode* node){
+	if((node->left == NULL) && (node->right = NULL)){
+		leaf++;
+	}
+	leafCount(node->left);
+	leafCount(node->right); 
+} 
+
+```
+
