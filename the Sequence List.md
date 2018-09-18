@@ -150,4 +150,90 @@ int main(){
  > 将顺序表(a1,a2,…,an)重新排列以a1为界的两部分：
  > a1前面的值均比a1小，a1后面的值均比a1大（这里假设数据元素的类型具有可比性，不妨设为整型）。
  
+ ```C
+ 
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXSIZE 100
+
+typedef int datatype;
+typedef struct{
+	datatype a[MAXSIZE];
+	int size;
+}List; 
+
+/**
+ *初始化顺序表
+ */ 
+void init(List* l){
+	l->size = 0;
+} 
+
+/**
+ *在顺序表的后部进行插入操作
+ */
+void insert(List* l,int x){
+	if(l->size == 0){
+		printf("This sequence table is empty！\n");
+	}
+	l->a[l->size] = x;
+	l->size = l->size + 1;
+} 
+
+/**
+ *需求:（使a1前面的值均比a1小，a1后面的值均比a1大） 
+ *实现方法：若an小于a1：先将a1和an保存（赋给另一个变量），
+ *a1~an都往后挪一个位置，再把原先a1的值赋给第一个结点 。 
+ */ 
+void sort(List* l){
+	int temp1,temp2;
+	temp1 = l->a[0];
+	for(int i=0;i<l->size;i++){
+		if(l->a[i] < temp1){
+			temp2 = l->a[i];
+			for(int j=i;j>0;j--){
+				l->a[j] = l->a[j-1];
+			}
+			l->a[0] = temp2;
+		}
+	}
+} 
+
+/**
+ *打印顺序表
+ */
+void print(List* l){
+	int i;
+    if(!l->size){
+    	printf("\n顺序表为空！\n");
+	} else{
+		for(i=0;i<l->size;i++){
+			printf("%5d  ",l->a[i]);
+		}
+	}
+	printf("\n"); 
+} 
+
+int main(){
+	List list;
+	
+	init(&list);
+	insert(&list,5);
+	insert(&list,4);
+	insert(&list,6);
+	insert(&list,0);
+	insert(&list,9);
+	insert(&list,2);
+	insert(&list,3);
+	insert(&list,8);
+	printf("原顺序表：\n"); 
+	print(&list);
+	sort(&list);
+	printf("排序后的顺序表：\n");
+	print(&list);
+	
+	return 0;
+	
+}
+
 
