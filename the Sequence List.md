@@ -143,7 +143,7 @@ int main(){
 
 ```
 
-顺序表的应用之节点排序
+顺序表的应用之节点排序(1)
 ---------------------
 
  > 需求：
@@ -235,5 +235,118 @@ int main(){
 	return 0;
 	
 }
+
+```
+
+顺序表的应用之排序（2）
+------------------------
+
+```C
+
+/**
+ *需求： 
+ *有顺序表A和B，其元素均按从小到大的升序排列，
+ *编写一个算法，将它们合并成一个顺序表C，要求C的元素也按从小到大的升序排列。
+ */
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXSIZE 100
+
+typedef int datatype;
+
+typedef struct{
+	datatype a[MAXSIZE];
+	int size;
+}List; 
+
+/**
+ * 顺序表初始化
+ */ 
+void init(List* l){
+	l->size = 0;
+}
+
+/**
+ * 在顺序表的尾部进行插入操作
+ */
+void insert(List* l,datatype x){
+	if(l->size == MAXSIZE){
+		printf("\n此顺序表已满！\n");
+		exit(1);
+	}
+	l->a[l->size] = x;
+	l->size = l->size + 1;
+} 
+
+/**
+ * 打印顺序表各结点的值 
+ */ 
+void print(List* l){
+	if(!l->size){
+		printf("\n此顺序表是空的！\n");
+	}
+	else{
+		for(int i=0;i<l->size;i++){
+			printf("%5d",l->a[i]);
+		}
+	}
+}
+
+/**
+ *排序
+ */ 
+void sort(List* l_1,List* l_2,List* l){
+	
+	int i=0,j=0,k=0;
+	
+	while(i < l_1->size && j < l_2->size){
+		if(l_1->a[i] < l_2->a[j]){
+			l->a[k++] = l_1->a[i++];
+		}
+		else{
+			l->a[k++] = l_2->a[j++]; 
+		}
+	}
+	while(i < l_1->size){
+		l->a[k++] = l_1->a[i++];
+	}
+	while(j < l_2->size){
+		l->a[k++] = l_2->a[j++];
+	}
+	l->size = k;
+	
+}
+
+int main(){
+	
+	List list1;
+	List list2;
+	List l;
+	int a[5];
+	
+	init(&list1);
+	init(&list2);
+	init(&l);
+	
+	for(int i=0;i<5;i++){
+		scanf("%d",&a[i]);
+		insert(&list1,a[i]);
+	}
+	print(&list1);
+	
+	for(int j=0;j<5;j++){
+		scanf("%d",&a[j]);
+		insert(&list2,a[j]);
+	}
+	print(&list2);
+	printf("\n");
+	
+	sort(&list1,&list2,&l);
+	print(&l);
+	
+	return 0;
+}
+
+```
 
 
