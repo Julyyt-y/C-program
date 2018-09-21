@@ -1,5 +1,8 @@
-顺序队列的实现
+队列的实现
 ===================
+
+顺序队列的实现
+--------------
 
 ```C
 
@@ -108,3 +111,94 @@ int main(){
 }  
 
 ```
+
+循环队列的实现
+-----------------
+
+```C
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAXSIZE 5
+
+typedef struct{
+	int a[MAXSIZE];
+	int front;				//头 ，指示的是队首结点在数组中元素得下标 
+	int rear;				//尾 ，指示的是队尾结点在数组元素下标的下一个位置 
+}Queue; 
+  
+/**
+ * 初始化函数
+ */
+void init(Queue* sq){
+	sq->front = sq->rear = 0;
+}
+
+/**
+ * 判断队列是否为空
+ */
+int empty(Queue* sq){
+	if(sq->front == sq->rear){
+		printf("\n This queue is empty ! ! !\n"); //此处打印只是为了可以在屏幕上看出队列是否为空 
+	}
+	return 0;
+	//队列为空的条件是 队首==队尾 
+}
+
+/**
+ * 打印队列的结点值
+ */
+void display(Queue* sq){
+	if(empty(sq)){
+		printf("\n This queue is empty ! \n");
+	}
+	else{
+		for(int i=sq->front;i<sq->rear;i++){
+			printf("%5d",sq->a[i]);
+		}
+	}
+} 
+
+/**
+ * 循环队列的插入（入队）操作
+ */
+void insert(Queue* sq,int x){
+	if((sq->rear+1) % MAXSIZE == sq->front){	//循环队列的判满
+		printf("\n This queue is full ! Can not do insert operation\n");
+	}
+	sq->a[sq->rear] = x;
+	sq->rear = (sq->rear+1) % MAXSIZE;
+}
+
+/**
+ * 循环队列的删除操作
+ */
+void dele(Queue* sq){
+	if(sq->front == sq->rear){
+		printf("\n This queue is empty ! \n");
+		exit(1);
+	}
+	sq->front = (sq->front+1) % MAXSIZE;
+} 
+
+int main(){
+	Queue sq;
+	int a[8];
+	
+	init(&sq);
+	empty(&sq);
+	for(int i=0;i<8;i++){
+		scanf("%d",&a[i]);
+		insert(&sq,a[i]);
+	}
+	empty(&sq);
+	printf("\n该队列为：\n");
+	display(&sq);
+	dele(&sq);
+	dele(&sq);
+	dele(&sq);
+	printf("\n删除3个结点后的队列为：\n");
+	display(&sq);
+	
+	return 0;
+} 
