@@ -106,3 +106,5 @@ int main(){
 	printf("\n再删除一个元素后该队列为：\n");
 	display(&queue);
 } 
+
+```
