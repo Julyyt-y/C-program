@@ -1,7 +1,8 @@
+顺序队列的实现
+===================
 
-/**
- * 顺序队列的实现
- */
+```C
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAXSIZE 100
