@@ -88,10 +88,10 @@ int main(){
 	
 	init(&queue);
 	empty(&queue);
-//	for(int i=0;i<8;i++){
-//		scanf("%d",a[i]);
-//		insert(&queue,a[i]);
-//	} 
+	for(int i=0;i<8;i++){
+		scanf("%d",&a[i]);
+		insert(&queue,a[i]);
+	} 
 	insert(&queue,1);
 	insert(&queue,2);
 	insert(&queue,3);
@@ -105,6 +105,6 @@ int main(){
 	dele(&queue);
 	printf("\n再删除一个元素后该队列为：\n");
 	display(&queue);
-} 
+}  
 
 ```
