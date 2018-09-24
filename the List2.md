@@ -15,19 +15,49 @@ typedef struct link_node{
 }node;
 
 /**
- * 建立一个空链表
+ *建立一个空链表
  */
 node *init(){
-	return NULL;
-} 
+	node *list = (node*)malloc(sizeof(node));
+//	list->info = -1111;
+//	list->next = NULL;
+	list = NULL;
+	return list;
+}
 
+/**
+ *头插法：
+ *在链表头部插入一个值为 x 的节点 
+ */
+void insertByFront(node* head,int x){
+	node *p = (node*)malloc(sizeof(node));
+	p->info = x;
+	//插入 
+	p->next = head;
+	head = p;
+} 
+ 
+/**
+ *尾插法
+ */
+void *insertByTail(node *head,int y){
+	node *p;
+	p = (node*)malloc(sizeof(node));
+	p->info = y;
+	while(head->next != NULL){
+		head = head->next;
+	}
+	head->next = p;
+	p->next = NULL;
+
+} 
 /**
  *输出单链表中各个结点的值
  */
 void display(node *head){
 	node *p;
 	p = head;
-	//或 p = NULL 
+	//或 p = NULL
 	if(!p){
 		printf("\n此单链表为空表！\n");
 	}
@@ -38,6 +68,7 @@ void display(node *head){
 			printf("%5d",p->info);
 			p = p->next;
 		}
+		printf("\n");
 	}
 }
 
@@ -123,3 +154,18 @@ node *dele(node *head,int x){
 	}
 	return head;
 }
+
+int main(){
+	node *list = init();
+	int a[8];
+
+	display(list);
+	insertByTail(list,1);
+	display(list);
+	for(int i=0;i<8;i++){
+		scanf("%d",&a[i]);
+		insertByTail(list,i);
+	}
+	display(list);
+	return 0;
+} 
