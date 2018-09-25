@@ -185,3 +185,5 @@ int main(){
 	find_2(list,6);
 	return 0;
 }
+
+```
