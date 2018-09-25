@@ -6,10 +6,6 @@
 
 ```C
 
-/**
- *单链表的实现
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
