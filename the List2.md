@@ -6,6 +6,10 @@
 
 ```C
 
+/**
+ *单链表的实现
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,47 +18,56 @@ typedef struct link_node{
 	struct link_node *next;
 }node;
 
+int flag = 5;
 /**
- *建立一个空链表
+ *链表的创建（头插法） 
  */
-node *init(){
-	node *head = (node*)malloc(sizeof(node));
-	head->info = -1111;
-	head->next = NULL;
+node *creat_1(){
+	node *head = NULL,*s;
+	int x;
+	while(x != flag){
+		s = (node*)malloc(sizeof(node));
+		s->info = x;
+		s->next = head;
+		head = s;
+		scanf("%d",&x);
+	}
 	return head;
 }
 
 /**
- *头插法：
- *在链表头部插入一个值为 x 的节点 
- */
-void insertByFront(node* head,int x){
-	node *p = (node*)malloc(sizeof(node));
-	p->info = x;
-	//插入 
-	p->next = head->next;
-	head->next = p;
-} 
- 
-/**
- *尾插法
- */
-void *insertByTail(node *head,int y){
-	node *p = (node*)malloc(sizeof(node));
-	p->info = y;
-	while(head->next != NULL){
-		head = head->next;
+ *链表的创建（尾插法）
+ */ 
+node *creat_2(){
+	node *head = NULL;
+	node *p = NULL;
+	node *s;
+	int x;
+	scanf("%d",&x);
+	while(x != flag){
+		s = (node*)malloc(sizeof(node));
+		s->info = x;
+		if(head == NULL){
+			head = s;
+		}
+		else{
+			p->next = s;
+		}
+		p = s; //让p不断的移动到s的位置
+		scanf("%d",&x); 
 	}
-	head->next = p;
-	p->next = NULL;
-
-} 
+	if(p != NULL){
+		p->next = NULL;
+	}
+	return head;
+}
+	
 /**
  *输出单链表中各个结点的值
  */
 void display(node *head){
 	node *p;
-	p = head->next;
+	p = head;
 	//或 p = NULL
 	if(!p){
 		printf("\n此单链表为空表！\n");
@@ -91,7 +104,7 @@ node *find_1(node *head,int i){
  *查找链表中值为 X 的节点 
  */
 void *find_2(node *head,int i){
-	node *p;
+	node *p = head; 
 	while(p && p->info!=i){
 		p = p->next;
 	}
@@ -99,7 +112,7 @@ void *find_2(node *head,int i){
 		printf("\n该链表中没有此结点。\n");
 	}
 	else{
-		printf("\n该链表中有此结点。\n");
+		printf("\n该链表中存在此结点。\n");
 	}
 	return p;
 }
@@ -116,7 +129,7 @@ node *insert(node *head,int x,int i){
 	else{
 		p = (node*)malloc(sizeof(node));
 		p->info = x;		//设置新结点
-		//插入的结点作为单链表的第一个结点 
+		//插入的结点作为单链表的第一个结点
 		if(i==0){
 			p->next = head;
 			head = p;
@@ -128,7 +141,7 @@ node *insert(node *head,int x,int i){
 		}
 	}
 	return head;
-} 
+}
 
 /**
  *在链表中删除一个值为 x 的结点 
@@ -161,29 +174,23 @@ node *dele(node *head,int x){
 }
 
 int main(){
-	node *list = init();
+	
+	node *list = creat_2();
 	int a[8];
-
-	display(list);
-	insertByTail(list,0);
-	display(list);
-	for(int i=0;i<8;i++){
-		scanf("%d",&a[i]);
-		insertByTail(list,a[i]);
-	}
-	printf("\n尾插法插入8个数据后的链表：\n");
-	display(list);
-	for(int i=0;i<8;i++){
-		scanf("%d",&a[i]);
-		insertByFront(list,a[i]);
-	}
-	printf("\n头插法插入8个数据后的链表：\n");
-	display(list);
+	
+	display(list); 
 	printf("\n链表中第3个结点的值为：\n");
 	find_1(list,3);
 	printf("\n链表中值为6的节点是否存在：\n");
 	find_2(list,6);
+	printf("\n在第3个结点后添加数据为11的结点");
+	insert(list,11,3);
+	display(list);
+	printf("\n在链表中删除值为4的结点后的链表：\n");
+	dele(list,4);
+	display(list);
 	return 0;
+	
 }
 
 ```
