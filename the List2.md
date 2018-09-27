@@ -14,7 +14,7 @@ typedef struct link_node{
 	struct link_node *next;
 }node;
 
-int flag = 5;
+int flag = 5;	//创建链表的过程中，如果输入5，则停止创建，链表中所有的结点的值为5之前输入的所有值
 /**
  *链表的创建（头插法） 
  */
