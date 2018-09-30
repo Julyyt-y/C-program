@@ -190,3 +190,22 @@ int main(){
 }
 
 ```
+
+链表的其它操作
+---------------
+
+> 需求：
+> 计算链表中结点个数
+```C
+
+void sum_nodes(node *head){
+	node *p = head;
+	int i = 0;
+	while(p){
+		p = p->next;
+		i ++;
+	}
+	printf("\n该链表中的结点个数为：%d\n",i);
+}
+
+```
