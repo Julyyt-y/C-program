@@ -228,3 +228,32 @@ node *reverse(node *head){
 }
 
 ```
+
+> 需求：
+> 判断链表结点是否有序
+```C
+
+node *if_order1(node *head){
+	node *p = head->next;
+	node *pre = head;
+	int flag_1 = 1;
+	
+	while(p && flag_1!=0){
+		if(pre->info > p->info){
+			pre = pre->next;
+			p = p->next;
+		}
+		else{
+			flag_1 = 0;
+		}
+	}
+	if(flag_1!=0){
+		printf("\n此链表是从小到大的顺序。\n");
+		return head;
+	}
+	else{
+		return NULL;
+	}
+} 
+
+```
