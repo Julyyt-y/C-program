@@ -209,3 +209,22 @@ void sum_nodes(node *head){
 }
 
 ```
+
+> 需求：
+> 利用单链表原来的结点空间逆转一个单链表
+```C
+
+node *reverse(node *head){
+	node *p = head;
+	node *q;
+	head = NULL;
+	while(p){
+		q = p;
+		p = p->next;
+		q->next = head;
+		head = q;
+	}
+	return head;
+}
+
+```
