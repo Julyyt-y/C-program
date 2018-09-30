@@ -196,6 +196,7 @@ int main(){
 
 > 需求：
 > 计算链表中结点个数
+
 ```C
 
 void sum_nodes(node *head){
@@ -212,6 +213,7 @@ void sum_nodes(node *head){
 
 > 需求：
 > 利用单链表原来的结点空间逆转一个单链表
+
 ```C
 
 node *reverse(node *head){
@@ -231,6 +233,7 @@ node *reverse(node *head){
 
 > 需求：
 > 判断链表结点是否有序
+
 ```C
 
 node *if_order1(node *head){
@@ -260,6 +263,7 @@ node *if_order1(node *head){
 
 > 需求：
 > 在值为 y 的结点前插入一个值为 x 的结点
+
 ```C
 
 node *insert(node *head,int x,int y)
