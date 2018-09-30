@@ -257,3 +257,42 @@ node *if_order1(node *head){
 } 
 
 ```
+
+> 需求：
+> 在值为 y 的结点前插入一个值为 x 的结点
+```C
+
+node *insert(node *head,int x,int y)
+ {
+ 	node *p,*q;
+ 	node *pre=NULL;
+ 	p=head;
+	while(p&&p->info!=y)
+	{
+	 	pre=p;
+	 	p=p->next;//pre指向p的前驱结点
+			
+	}
+ 	if(!p){
+ 		printf("\n没找到第%d个结点\n",y);
+	}
+	else{
+		q=(node *)malloc(sizeof(node));
+ 		q->info=x;
+ 		
+		if(p != head){
+			if(pre)
+			{
+			  	q->next=pre->next;
+			  	pre->next=q;
+			}
+		}
+		else{
+ 			q->next=head;
+ 			head=q;
+		}
+	}
+	return head;
+ }
+ 
+ ```
