@@ -20,7 +20,8 @@ node *p,*q,*h;
  */
 void showNodeInfo(node *pp){
 	if(pp != NULL){
-		printf("姓名：%s，	电话：%s",pp->name,pp->tel);
+		printf("姓名：%s",pp->name);
+		printf("电话：%s",pp->tel);
 		printf("\n"); 
 	}
 }
@@ -111,6 +112,7 @@ void inputInfomation(){
 	while(1){
 		printf("请输入您要保存的好友的信息（您的所有好友的姓名不能重复呦~）：\n");
 		node *qq = (node*)malloc(sizeof(node));
+		qq->next = NULL;
 		printf("姓名：");
 		scanf("%s",qq->name);
 		printf("电话：");
@@ -260,5 +262,6 @@ int main(){
  *exit(x)（x不为0）都表示异常退出。
  *exit(0)表示正常退出。
  */
+
  
  ```
