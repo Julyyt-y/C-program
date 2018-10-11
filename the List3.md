@@ -12,9 +12,9 @@ typedef struct NodeLink{
 }node; 
 
 /**
- *建立一个带空的头结点额的单链表 
+ *建立一个带空的头结点的单链表 
  */
-node *initLink(){
+node *init(){
 	node *head = (node*)malloc(sizeof(node));
 	head->next = NULL;
 	return head;
@@ -95,7 +95,7 @@ node *delet(node *head,int x){
 } 
 
 int main(){
-	node *list = initLink();
+	node *list = init();
 	display(list);
 	insert(list,0,1);
 	insert(list,1,2);
