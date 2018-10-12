@@ -3,10 +3,6 @@
 
 ```C
 
-/**
- *循环单链表的实现
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -251,3 +247,5 @@ int main(){
 	print(list);
 	return 0;
 } 
+
+```
