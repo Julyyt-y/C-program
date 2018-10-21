@@ -2,9 +2,7 @@
 ============
 
 ```C
-/**
- *链式串
- */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
