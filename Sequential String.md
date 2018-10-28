@@ -193,9 +193,35 @@ int main(){
 	return 0;
 }
 
+```
+顺序串的其它操作
+================
 > 
 > 需求：顺序串的比较（遇大则大）
 >
 
 ``C
+
+int compare(seqstring s1,seqstring s2){
+	int i=0,j=0;
+	for(i,j;s1.str[i]!='\0',s2.str[j]!='\0';i++,j++){
+		if(s1.str[i] > s2.str[j]){
+			return 1;
+		}
+		if(s1.str[i] < s2.str[j]){
+			return -1;
+		}
+	}
+	if(i==s1.length && j!=s2.length){
+		return -1;
+	}
+	if(i==s1.length && j==s2.length){
+		return 0;
+	}
+	if(i!=s1.length && j==s2.length){
+		return 1;
+	}
+}
+
+```
 
