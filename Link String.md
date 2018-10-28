@@ -221,3 +221,36 @@ int main(){
 
 	return 0;
 }
+
+```
+链式串的其它操作
+===================
+
+>
+> 需求：比较两链式串的大小（遇大则大）
+>
+
+```C
+
+int compare(linkstring *s1,linkstring *s2){
+	linkstring p1 = *s1;
+	linkstring p2 = *s2;
+	for(p1,p2;p1!=NULL&&p2!=NULL;p1=p1->next,p2=p2->next){
+		if(p1->data > p2->data){
+			return 1;
+		}
+		if(p1->data < p2->data){
+			return -1;
+		}
+	}
+	if(p1==NULL && p2!=NULL){
+		return -1;
+	}
+	if(p1 == NULL && p2==NULL){
+		return 0;
+	} if(p1 != NULL && p2 == NULL){
+		return 1;
+	}
+} 
+
+```
