@@ -200,7 +200,7 @@ int main(){
 > 需求：顺序串的比较（遇大则大）
 >
 
-``C
+```C
 
 int compare(seqstring s1,seqstring s2){
 	int i=0,j=0;
