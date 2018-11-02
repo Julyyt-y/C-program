@@ -1,6 +1,3 @@
-
-```C
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -260,6 +257,3 @@ int main(){
  *exit(x)（x不为0）都表示异常退出。
  *exit(0)表示正常退出。
  */
-
- 
- ```
