@@ -1,4 +1,7 @@
->需求：实现一个可以增删改查的宿舍管理系统
+/**
+ *需求：
+ *实现一个可以增删改查的宿舍管理系统
+ */
 #include <stdio.h> 
 #include <string.h>
 #include <stdlib.h>
