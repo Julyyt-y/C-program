@@ -1,3 +1,7 @@
+/**
+ *需求：
+ *实现一个简单的可以增删改查的通讯录
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
