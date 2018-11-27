@@ -1,0 +1,181 @@
+图的创建和遍历
+=================
+
+```C
+
+#include <stdio.h> 
+#include <stdlib.h>
+#define M 20
+//边表结点 
+typedef struct node{
+	int dajvex;				//邻接点 
+	struct node *next;
+}EdgeNode;
+//头结点类型 
+typedef struct vnode{
+	char vertex;			//顶点信息 
+	EdgeNode *FirstEdge;	//邻接链表头指针 
+}VertexNode;
+//邻接表类型 
+typedef struct{
+	VertexNode adjlist[M];	//存放头结点的顺序表 
+	int n,e;				//图的顶点数与边数 
+}LinkedGraph;
+
+int visited[M];
+
+/**
+ * 邻接表法创建图 
+ * 形参c = 0表示建立一个无向图，否则表示建立一个有向图 
+ */
+//void creat(LinkedGraph *g,char *fileName,int c){
+//	FILE *fp;
+//	f	int i,j,k;
+//	EdgeNode *s;
+//p = fopen(fileName,"r");
+//	if(fp){
+//		fscanf(fp,"%d%d",&g->n,&g->e);
+//		for(i=0;i<g->n;i++){
+//			fscanf(fp,"%ls",&g->adjlist[i].vertex);
+//			g->adjlist[i].FirstEdge = NULL;
+//		}
+//		for(k=0;k<g->e;k++){
+//			fscanf(fp,"%d%d",&i,&j);
+//			s = (EdgeNode *)malloc(sizeof(EdgeNode));
+//			s->dajvex = j;
+//			s->next = g->adjlist[i].FirstEdge;
+//			g->adjlist[i].FirstEdge = s;
+//			if(c == 0){
+//				s = (EdgeNode *)malloc(sizeof(EdgeNode));
+//				s->dajvex = i;
+//				s->next = g->adjlist[j].FirstEdge;
+//				g->adjlist[j].FirstEdge = s;
+//			}
+//		}
+//		fclose(fp);
+//	}
+//	else{
+//		g->n = 0;
+//	}
+//}
+void createadjgraph(LinkedGraph *g){
+	int i,j,k;
+	EdgeNode *s;
+	printf("please input n and e:\n");
+	scanf("%d,%d",&g->n,&g->e);
+	getchar();
+	printf("please input %d vertex:",g->n);
+	for(i=0;i<g->n;i++){
+		scanf("%c",&g->adjlist[i].vertex);
+		getchar();
+    	g->adjlist[i].FirstEdge = NULL;
+    }
+    printf("please input %d edges:",g->e);
+	for(k=0;k<g->e;k++){
+		scanf("%d,%d",&i,&j);
+   		s=(EdgeNode*)malloc(sizeof(EdgeNode));
+   		s->dajvex=j;     /*邻接点序号为j*/
+   		s->next=g->adjlist[i].FirstEdge;
+   		g->adjlist[i].FirstEdge=s; /*将新结点*s插入顶点vi的边表头部*/
+   		s=(EdgeNode*)malloc(sizeof(EdgeNode));
+   		s->dajvex=i;
+  		s->next=g->adjlist[j].FirstEdge;
+  		g->adjlist[j].FirstEdge=s;
+	} /*将新结点*s插入顶点vj的边表头部*/
+}
+
+
+
+/**
+ * 图的深度优先遍历 
+ * 从顶点i开始深度优先遍历图的连通分量 
+ * g为图的邻接表，i为遍历起点 
+ */
+void dfs(LinkedGraph g,int i){
+	EdgeNode *p;
+	printf("visit vertex: %c \n",g.adjlist[i].vertex);
+	visited[i] = 1;
+	p = g.adjlist[i].FirstEdge;
+	while(p){
+		if(!visited[p->dajvex]){
+			dfs(g,p->dajvex);
+		}
+		p = p->next;
+	}
+} 
+/**
+ * 图的深度优先遍历 
+ * g为图的邻接表 
+ */
+void DfsTraverse(LinkedGraph g){
+	int i;
+	for(i=0;i<g.n;i++){
+		visited[i] = 0;
+	}
+	for(i=0;i<g.n;i++){
+		if(!visited[i]){
+			dfs(g,i);
+		}
+	}
+} 
+
+/**
+ * 图的广度优先遍历 
+ * 从顶点i出发广度优先遍历图g的连通分量
+ * g为图的邻接表，i为遍历始点 
+ */
+void bfs(LinkedGraph g,int i){
+	int j;
+	EdgeNode *p;
+	int queue[M],front,rear;
+	front = rear = 0;
+	printf("%c",g.adjlist[i].vertex);
+	visited[i] = 1;
+	queue[rear++] = i;
+	while(rear > front){
+		j = queue[front++];
+		p = g.adjlist[j].FirstEdge;
+		while(p){
+			if(visited[p->dajvex] == 0){
+				printf("%c",g.adjlist[p->dajvex].vertex);
+				queue[rear++] = p->dajvex;
+				visited[p->dajvex] = 1;
+			}
+			p = p->next;
+		}
+	}
+} 
+/**
+ * 图的广度优先遍历 
+ * g为邻接表，返回值为连通分量个数 
+ */
+void BfsTraverse(LinkedGraph g){
+	int i,count = 0;
+	for(i=0;i<g.n;i++){
+		visited[i] = 0;
+	}
+	for(i=0;i<g.n;i++){
+		if(!visited[i]){
+			printf("\n");
+			count++;
+			bfs(g,i); 
+		}
+	}
+	printf("\n该图的连通分量个数为：%d",count); 
+} 
+
+int main(){
+	LinkedGraph g;
+	int count,a;
+	createadjgraph(&g);
+	printf("\n深度优先遍历无向图：\n");
+	DfsTraverse(g);
+	printf("\n");
+	printf("\n广度优先遍历无向图：\n");
+	BfsTraverse(g);
+	printf("\n");
+
+	return 0;
+}
+
+```
