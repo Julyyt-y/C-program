@@ -328,6 +328,29 @@ pe* selectPeInfo(pe* h1, char* name, char* studentId,char* dormitory){
 //	}
 //	return p;
 //} 
+//void sortNodesByStudentId(){
+//	node* p1 = h;
+//	node* p2 = p1->next;
+//	node* pre = NULL;
+//	int i = 1;
+//	while(p2){
+//		if(strcmp(p1->studentId,p2->studentId) > 0){
+//			if(p1 && i==1){
+//				p1->next = p2->next;
+//				p2->next = p1;
+//			}
+//			else{
+//				pre->next = p1->next;
+//				p1->next = p2->next;
+//				p2->next = p1;
+//			} 
+//		}
+//		pre = p1;
+//		p1 = p1->next;
+//		p2 = p2->next;
+//		i++;
+//	}
+//}
 
 
 /**
